@@ -1,153 +1,126 @@
 # TASKFLOW
 
-> A raw, brutalist task tracker built with the MERN stack.  
-> No polish. No softness. Maximum contrast, maximum function.
+A no-nonsense task tracker built with the MERN stack. Brutalist design — hard borders, zero fluff, maximum contrast. You open it, you add tasks, you get things done.
 
 ---
 
-## Live URLs
+## What it looks like
 
-| Service  | URL                                           |
-|----------|-----------------------------------------------|
-| Frontend | _Add Vercel URL after deployment_             |
-| Backend  | _Add Render URL after deployment_             |
+Black borders. Electric yellow buttons. Monospace text everywhere. It was designed to feel like a manifesto printed on graph paper.
 
 ---
 
-## Features
+## What you can do with it
 
-- ✅ Full CRUD — create, read, update, delete tasks with zero page reloads
-- 🎨 Brutalist UI — hard black borders, electric yellow accents, IBM Plex Mono + Space Grotesk
-- 🔍 Filter by **status** (Todo / In Progress / Done) and **priority** (Low / Medium / High)
-- 🗂 Sort by **created date** or **due date**
-- 💾 Filter state persisted in `localStorage`
-- ⚠ Overdue task dates highlighted in **red**
-- ⌨ Press **`N`** anywhere to open the new task modal
-- 🔔 Toast notifications for all CRUD operations
-- 📊 Live task count summary bar
-- 📱 Fully responsive — 3-col desktop grid, 1-col on mobile
-
----
-
-## Tech Stack
-
-| Layer     | Technology                           |
-|-----------|--------------------------------------|
-| Frontend  | React 19 (Vite), CSS Modules         |
-| Backend   | Node.js, Express.js                  |
-| Database  | MongoDB + Mongoose                   |
-| HTTP      | Axios                                |
-| Toasts    | react-hot-toast                      |
-| Dates     | date-fns                             |
-| Deploy FE | Vercel                               |
-| Deploy BE | Render                               |
+- **Create tasks** with a title, description, priority (low / medium / high), status, and due date
+- **Edit or delete** any task with one click
+- **Mark tasks done** instantly without opening the edit form
+- **Filter** tasks by status or priority — results update as you click, no submit needed
+- **Sort** by creation date or due date
+- **Overdue dates turn red** so nothing slips through
+- Press **N** anywhere on the page to open the new task form
+- Filters remember where you left off (saved in localStorage)
+- Toast notifications for every action so you always know what happened
 
 ---
 
-## Local Setup
+## Tech stack
 
-### Prerequisites
+| Part | What's used |
+|------|-------------|
+| Frontend | React + Vite |
+| Backend | Node.js + Express |
+| Database | MongoDB (Atlas) + Mongoose |
+| Styling | CSS Modules |
+| HTTP | Axios |
+| Notifications | react-hot-toast |
+| Dates | date-fns |
 
-- Node.js ≥ 18
-- A MongoDB URI (MongoDB Atlas free tier recommended)
+---
 
-### 1. Clone the repo
+## Running it locally
 
+You'll need Node.js (v18+) and a MongoDB Atlas URI.
+
+**1. Clone the repo**
 ```bash
-git clone <your-repo-url>
-cd intern_aasigmnnt
+git clone https://github.com/Aryan-jr-07/taskflow.git
+cd taskflow
 ```
 
-### 2. Backend
-
+**2. Set up the backend**
 ```bash
 cd server
 cp .env.example .env
-# Fill in your MONGO_URI in .env
+# Open .env and paste your MongoDB Atlas URI
 npm install
-npm run dev
-# Runs on http://localhost:5000
 ```
 
-### 3. Frontend
-
+**3. Set up the frontend**
 ```bash
 cd ../client
 cp .env.example .env
-# VITE_API_URL=http://localhost:5000/api (already set by default)
+# VITE_API_URL is already set to localhost:5001 by default
+npm install
+```
+
+**4. Run both at once**
+```bash
+cd ..
 npm install
 npm run dev
-# Runs on http://localhost:5173
 ```
+
+That's it. Frontend runs on `http://localhost:5173`, backend on `http://localhost:5001`.
 
 ---
 
-## API Reference
+## Deploying
 
-Base URL: `http://localhost:5000/api`
+**Backend → Render**
+- Root directory: `server`
+- Build: `npm install`
+- Start: `npm start`
+- Env vars: `MONGO_URI`, `PORT` (use 10000), `CLIENT_ORIGIN` (your Vercel URL)
 
-| Method | Endpoint         | Description                                    |
-|--------|------------------|------------------------------------------------|
-| GET    | `/tasks`         | Fetch all tasks (`?status=`, `?priority=`, `?sort=createdAt\|dueDate`) |
-| POST   | `/tasks`         | Create a new task                              |
-| PUT    | `/tasks/:id`     | Update task by ID                              |
-| DELETE | `/tasks/:id`     | Delete task by ID                              |
-
-### Task Object
-
-```json
-{
-  "_id": "...",
-  "title": "Finish the report",
-  "description": "Optional details",
-  "status": "todo | in-progress | done",
-  "priority": "low | medium | high",
-  "dueDate": "2025-07-01T00:00:00.000Z",
-  "createdAt": "2025-06-28T00:00:00.000Z"
-}
-```
+**Frontend → Vercel**
+- Root directory: `client`
+- Framework: Vite
+- Env var: `VITE_API_URL` → your Render backend URL + `/api`
 
 ---
 
-## Deployment
+## Live
 
-### Backend → Render
-
-1. Create a new **Web Service** on [Render](https://render.com)
-2. Connect your GitHub repo, set root directory to `server/`
-3. Build command: `npm install`
-4. Start command: `npm start`
-5. Add environment variables:
-   - `MONGO_URI` — your MongoDB Atlas connection string
-   - `PORT` — `10000` (Render default)
-   - `CLIENT_ORIGIN` — your Vercel frontend URL
-
-### Frontend → Vercel
-
-1. Import your repo on [Vercel](https://vercel.com)
-2. Set root directory to `client/`
-3. Framework: **Vite**
-4. Add environment variable:
-   - `VITE_API_URL` — your Render backend URL + `/api`
-5. Deploy
+| | URL |
+|--|-----|
+| Frontend | _coming soon_ |
+| Backend | _coming soon_ |
 
 ---
 
-## Project Structure
+## API
+
+| Method | Endpoint | What it does |
+|--------|----------|--------------|
+| GET | `/api/tasks` | Get all tasks (supports `?status=`, `?priority=`, `?sort=`) |
+| POST | `/api/tasks` | Create a task |
+| PUT | `/api/tasks/:id` | Update a task |
+| DELETE | `/api/tasks/:id` | Delete a task |
+
+---
+
+## Folder layout
 
 ```
-intern_aasigmnnt/
-├── README.md
-├── server/
-│   ├── server.js           # Express entry point
-│   ├── models/Task.js      # Mongoose schema
-│   ├── controllers/        # Route handlers
-│   ├── routes/             # Express routers
-│   └── middleware/         # Validation + error handlers
-└── client/
-    ├── index.html
+taskflow/
+├── server/         ← Express API
+│   ├── models/     ← Mongoose schemas
+│   ├── controllers/← Route handlers
+│   ├── routes/     ← API routes
+│   └── middleware/ ← Validation + errors
+└── client/         ← React app
     └── src/
-        ├── App.jsx          # Root component + modal + state
-        ├── hooks/useTasks.js # Task state + API calls
-        └── components/      # TaskCard, TaskForm, TaskList, FilterBar, EmptyState
+        ├── hooks/      ← useTasks (all state + API calls)
+        └── components/ ← TaskCard, TaskForm, FilterBar, etc.
 ```
