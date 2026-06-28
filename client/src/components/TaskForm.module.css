@@ -1,0 +1,156 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.heading {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 1.5rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding-bottom: 16px;
+  border-bottom: var(--border-thick);
+}
+
+/* Field wrapper */
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.label {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* Inputs */
+.input,
+.textarea,
+.select {
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  color: var(--color-black);
+  background-color: var(--color-white);
+  border: var(--border-thin);
+  padding: 10px 12px;
+  width: 100%;
+  outline: none;
+  transition: outline 0.05s;
+}
+
+.input:focus,
+.textarea:focus,
+.select:focus {
+  outline: 3px solid var(--color-yellow);
+  outline-offset: 0px;
+}
+
+.input.inputError {
+  border-color: var(--color-red);
+}
+
+.textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.select {
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23000' stroke-width='2' fill='none'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 36px;
+}
+
+/* Error text */
+.error {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--color-red);
+  letter-spacing: 0.03em;
+}
+
+.charCount {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: #666;
+  text-align: right;
+}
+
+/* Two-column row for status + priority */
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+@media (max-width: 480px) {
+  .row {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Form action buttons */
+.formActions {
+  display: flex;
+  gap: 12px;
+  padding-top: 8px;
+  border-top: var(--border-thin);
+  flex-wrap: wrap;
+}
+
+.btnSubmit {
+  background-color: var(--color-yellow);
+  color: var(--color-black);
+  border: var(--border-thick);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  padding: 12px 24px;
+  box-shadow: var(--shadow-card);
+  transition: box-shadow 0.1s ease, transform 0.1s ease;
+}
+
+.btnSubmit:hover:not(:disabled) {
+  box-shadow: var(--shadow-card-hover);
+  transform: translate(2px, 2px);
+}
+
+.btnSubmit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btnCancel {
+  background-color: var(--color-white);
+  color: var(--color-black);
+  border: var(--border-thin);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  padding: 12px 24px;
+  transition: box-shadow 0.1s ease, transform 0.1s ease;
+}
+
+.btnCancel:hover:not(:disabled) {
+  box-shadow: 2px 2px 0px var(--color-black);
+  transform: translate(-1px, -1px);
+}
+
+.btnCancel:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
